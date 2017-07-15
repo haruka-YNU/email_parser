@@ -1,0 +1,6 @@
+# This is an implicit value, here for clarity
+--index https://pypi.python.org/simple/
+
+bs4==0.0.1
+lxml==3.8.0
+python-dateutil==2.6.1
