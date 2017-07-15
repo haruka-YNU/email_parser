@@ -4,6 +4,13 @@ email_parser is based on the python2 eamil module.
 email_parser can help you to extract header informations and mail content from a .eml file. 
 Also can help you to save the attachment to the place you want.
 
+## Requirements
+1. You need Python 2.7 or later  
+2. lxml python packages is installed 
+'''
+sudo pip install lxml
+'''
+
 ## The installation
 
 To clone the whole project into your computer.
