@@ -16,5 +16,6 @@ setup(
     url='https://github.com/haruka-YNU/email_parser',
     author_email='xiao-yao-tn@ynu.jp',
     py_modules=['email_parser'],
-    license='MIT'
+    license='MIT',
+    install_requires = requirements
 )
