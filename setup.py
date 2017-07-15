@@ -7,6 +7,7 @@ requirements = [
     'bs4',
     'beautifulsoup4',
     'python-dateutil'
+    'six'
 ]
 
 setup(
