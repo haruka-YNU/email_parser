@@ -47,11 +47,9 @@ class parser():
             encode_header = email.Header.decode_header(head)
             for part in encode_header:
                 if part[1] != None:
-                    decoded_header += self.__format_str(part[0].decode(part[1], errors='ignore'))
-                elif type(part[0]) == str:
-                    decoded_header += self.__format_str(part[0])
+                    decoded_header += self.__format_str(self.__my_unicode(part[0],part[1]))
                 else:
-                    decoded_header += self.__format_str(part[0].decode())
+                    decoded_header += self.__format_str(part[0])
         if decoded_header == '':
             return None
         else:
@@ -103,7 +101,8 @@ class parser():
                     md5obj = hashlib.md5()
                     md5obj.update(data)
                     attachment_hash_list.append(md5obj.hexdigest())
-                    attachment_name = self.decode_head(file_name)
+                    encoded_attachment_name = email.Header.Header(file_name)
+                    attachment_name = self.decode_head(encoded_attachment_name)
                     attachment_list.append(attachment_name)
                     if os.path.splitext(attachment_name)[1]:
                         attachment_type_list.append(os.path.splitext(attachment_name)[1])
