@@ -49,7 +49,7 @@ class parser():
                 if part[1] != None:
                     decoded_header += self.__format_str(self.__my_unicode(part[0],part[1]))
                 else:
-                    decoded_header += self.__format_str(part[0])
+                    decoded_header += self.__my_unicode(part[0], 'utf-8')
         if decoded_header == '':
             return None
         else:
@@ -63,7 +63,10 @@ class parser():
         #抽出邮件id
         mail_id = self.msg['Message-ID']
         #抽出邮件日期
-        mail_date = parse(self.msg['date']).strftime("%Y-%m-%d %H:%M:%S")
+        if self.msg['date']:
+            mail_date = parse(self.msg['date'][0:31]).strftime("%Y-%m-%d %H:%M:%S")
+        else:
+            mail_date = None
         #解码发信人并抽出
         mail_sender = self.decode_head(self.msg['from'])
         #解码标题并抽出
@@ -102,17 +105,17 @@ class parser():
                     md5obj.update(data)
                     attachment_hash_list.append(md5obj.hexdigest())
                     encoded_attachment_name = email.Header.Header(file_name)
-                    attachment_name = self.decode_head(encoded_attachment_name)
+                    attachment_name = self.decode_head(encoded_attachment_name).replace('/','-')
                     attachment_list.append(attachment_name)
                     if os.path.splitext(attachment_name)[1]:
                         attachment_type_list.append(os.path.splitext(attachment_name)[1])
                     self.__save_file(attachment_name, data)
                 #处理txt文本
                 elif 'plain' in content_type:
-                    if charset:
-                        mail_text_article = part.get_payload(decode=True).decode(charset, errors='ignore')
+                    if charset == None or 'cp-850' or '7-bit':
+                        mail_text_article = part.get_payload(decode=True).decode('utf-8', errors='ignore')
                     else:
-                        mail_text_article = part.get_payload(decode=True)
+                        mail_text_article = part.get_payload(decode=True).decode(charset, errors='ignore')
                 #处理html
                 elif 'html' in content_type:
                     html = part.get_payload(decode=True)
