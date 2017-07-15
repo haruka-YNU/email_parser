@@ -5,6 +5,7 @@ except ImportError:
 
 requirements = [
     'bs4',
+    'lxml',
     'python-dateutil'
 ]
 
