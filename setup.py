@@ -6,7 +6,7 @@ except ImportError:
 requirements = [
     'bs4',
     'beautifulsoup4',
-    'python-dateutil'
+    'python-dateutil',
     'six'
 ]
 
