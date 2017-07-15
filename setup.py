@@ -4,7 +4,6 @@ except ImportError:
     from distutils.core import setup
 
 requirements = [
-    'lxml',
     'bs4',
     'beautifulsoup4',
     'python-dateutil'
