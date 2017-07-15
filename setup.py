@@ -5,7 +5,6 @@ except ImportError:
 
 requirements = [
     'lxml',
-    'libxml2',
     'bs4',
     'beautifulsoup4',
     'python-dateutil'
