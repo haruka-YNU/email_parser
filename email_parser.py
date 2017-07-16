@@ -28,7 +28,7 @@ class parser():
             return msg, file_hash
 
     def __save_file(self, file_name, data):
-        file_dir = os.path.join(self.save_dir, self.file_path.split('/')[-1].split('.')[0]))
+        file_dir = os.path.join(self.save_dir, self.file_path.split('/')[-1].split('.')[0])
         file_path = os.path.join(file_dir, file_name)
         if not os.path.exists(file_dir):
             os.makedirs(file_dir)

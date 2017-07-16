@@ -1,5 +1,5 @@
 # -*-coding:utf-8 -*-
-from email_parser import parser
+from email_parser.email_parser import parser
 from pymongo import MongoClient
 import traceback
 import os
@@ -10,10 +10,10 @@ tests = db.bulktests
 
 def batch_parse():
     count = 1
-    for i in os.listdir('../samples'):
+    for i in os.listdir('../../samples/samples'):
         print count, i
         try:
-            mail_par = parser('../samples/' + i, '../files/')
+            mail_par = parser('../../samples/samples/' + i, '../../files/')
             result = mail_par.parse_email()
             tests.insert_one(result)
         except:
