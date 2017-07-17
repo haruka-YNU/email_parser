@@ -28,7 +28,7 @@ class parser():
             return msg, file_hash
 
     def __save_file(self, file_name, data):
-        file_dir = os.path.join(self.save_dir, self.file_path.split('/')[-1].split('.')[0])
+        file_dir = os.path.join(self.save_dir, self.file_path.split('/')[-1])
         file_path = os.path.join(file_dir, file_name)
         if not os.path.exists(file_dir):
             os.makedirs(file_dir)
@@ -112,7 +112,11 @@ class parser():
                     self.__save_file(attachment_name, data)
                 #处理txt文本
                 elif 'plain' in content_type:
-                    if charset == None or 'cp-850' or '7-bit':
+                    if charset == None:
+                        mail_text_article = part.get_payload(decode=True).decode('utf-8', errors='ignore')
+                    elif charset == 'cp-850':
+                        mail_text_article = part.get_payload(decode=True).decode('utf-8', errors='ignore')
+                    elif charset == '7bit':
                         mail_text_article = part.get_payload(decode=True).decode('utf-8', errors='ignore')
                     else:
                         mail_text_article = part.get_payload(decode=True).decode(charset, errors='ignore')
