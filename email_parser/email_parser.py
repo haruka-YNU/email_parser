@@ -84,6 +84,7 @@ class parser():
         self.result['MailDate'] = mail_date
         self.result['MailReceiver'] = mail_receiver
         self.result['MailCc'] = mail_cc
+        self.result['IsMalicous'] = False
         return file_name, file_md5, mail_id, mail_subject, mail_sender, mail_date, mail_receiver, mail_cc
 
     def get_content(self):
