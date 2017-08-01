@@ -29,8 +29,8 @@ class parser():
 
     def __save_file(self, file_name, data):
         email_file_name = self.file_path.split('/')[-1]
-        file_dir = '%s/20%s/%s/%s/%s/%s/' %(self.save_dir, email_file_name[0:2], email_file_name[2:4],
-                                   email_file_name[4:6], email_file_name[6:11], email_file_name)
+        file_dir = '%s/20%s/%s/%s/%s00/%s/' %(self.save_dir, email_file_name[0:2], email_file_name[2:4],
+                                   email_file_name[4:6], email_file_name[6:8], email_file_name)
         #file_dir = os.path.join(self.save_dir, self.file_path.split('/')[-1][0:2])
         file_path = os.path.join(file_dir, file_name)
         if not os.path.exists(file_dir):
