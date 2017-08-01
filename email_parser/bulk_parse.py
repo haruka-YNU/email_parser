@@ -7,7 +7,7 @@ import os
 
 client = MongoClient('mongodb://127.0.0.1:27017/email')
 db = client.email
-tests = db.newtests
+collection = db.newtests
 
 def batch_parse(email_path, save_path, error_path = '../../error_log/'):
     count = 1
@@ -17,7 +17,7 @@ def batch_parse(email_path, save_path, error_path = '../../error_log/'):
             try:
                 mail_par = parser(os.path.join(root, name), save_path)
                 result = mail_par.parse_email()
-                tests.insert_one(result)
+                collection.insert_one(result)
             except:
                 if not os.path.exists(error_path):
                     os.makedirs(error_path)
